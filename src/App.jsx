@@ -84,16 +84,36 @@ const livros = [
 ];
 
 const App = () => {
+  const dados = produtos.filter(
+    ({ preco }) => Number(preco.replace('R$', '')) > 1500,
+  );
+  console.log(dados);
+
   return (
-    <ul>
-      {livros
-        .filter(({ ano }) => ano <= 2000)
-        .map(({ nome, ano }) => (
-          <li key={nome}>
-            {nome}, {ano}
-          </li>
-        ))}
-    </ul>
+    // <ul>
+    //   {livros
+    //     .filter(({ ano }) => ano <= 2000)
+    //     .map(({ nome, ano }) => (
+    //       <li key={nome}>
+    //         {nome}, {ano}
+    //       </li>
+    //     ))}
+    // </ul>
+    <section>
+      {dados.map(({ id, nome, preco, cores }) => (
+        <div key={id}>
+          <h1>{nome}</h1>
+          <p>Preço: {preco}</p>
+          <ul>
+            {cores.map((cor) => (
+              <li style={{ backgroundColor: cor, color: 'white' }} key={cor}>
+                {cor}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
   );
 };
 
