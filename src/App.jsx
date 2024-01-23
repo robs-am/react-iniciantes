@@ -1,3 +1,4 @@
+import { Header } from './components/Header';
 import { Home } from './components/Home';
 import { Produtos } from './components/Produtos';
 // // Mostre os dados da aplicação, como aprensetado no vídeo
@@ -94,18 +95,20 @@ const App = () => {
   // function handleClick(event) {
   //   console.log(event.target);
   // }
+  let Pagina = Produtos;
+  const { pathname } = window.location;
 
+  if (pathname === '/') {
+    Pagina = Home;
+  } else {
+    Pagina = Produtos;
+  }
   return (
-    <>
-      <ul>
-        <li>
-          <Home />
-        </li>
-        <li>
-          <Produtos />
-        </li>
-      </ul>
-    </>
+    <section>
+      <Header />
+
+      <Pagina />
+    </section>
 
     // <ul>
     //   {livros
